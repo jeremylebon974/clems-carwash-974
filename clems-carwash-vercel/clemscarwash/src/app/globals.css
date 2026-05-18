@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --red: #D4111E;
+  --red-glow: rgba(212, 17, 30, 0.35);
+  --blue: #1AA8D8;
+  --ink: #05080B;
+  --ink2: #0A0F14;
+  --ink3: #0F161E;
+  --steel: #1C2530;
+  --mist: #8FA3B0;
+  --fog: #C8D8E2;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--ink);
+}
+
+body {
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--font-barlow), sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  padding-bottom: 64px;
+}
+
+@media (min-width: 960px) {
+  body { padding-bottom: 0; }
+}
+
+/* ── Marquee ── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee { animation: marquee 20s linear infinite; }
+
+/* ── Ken Burns ── */
+@keyframes kenburns {
+  from { transform: scale(1.06); }
+  to   { transform: scale(1.0); }
+}
+.kenburns { animation: kenburns 10s ease-out forwards; }
+
+/* ── Pulse dot ── */
+@keyframes pulseDot {
+  0%, 100% { box-shadow: 0 0 0 0 var(--red-glow); }
+  50%       { box-shadow: 0 0 0 6px transparent; }
+}
+.pulse-dot { animation: pulseDot 2s ease-in-out infinite; }
+
+/* ── Scroll reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Form inputs ── */
+input, select, textarea {
+  background: var(--ink3);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 3px;
+  padding: 0.75rem 0.9rem;
+  color: #fff;
+  font-family: var(--font-barlow), sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  width: 100%;
+  transition: border-color 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+input::placeholder, textarea::placeholder {
+  color: rgba(143, 163, 176, 0.5);
+}
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--blue);
+}
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath fill='%231AA8D8' d='M5 6L0 0h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+}
+select option { background: #0F161E; color: #fff; }
+textarea { resize: vertical; min-height: 90px; }
